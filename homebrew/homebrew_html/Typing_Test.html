@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Typing test</title>
+	<link rel="stylesheet" type="text/css" href="../CSS/Typing_Test.css">
+</head>
+<body>
+
+<div class = 'container'>
+	<div id = 'timer'>
+		<h1>Time <span id = 'minutes'>0</span>:<span id = 'seconds'>00</span></h1>
+	</div>
+	<div class = 'input'>
+		<div id = 'word_container'>
+			<div id = 'word_box'>
+				<p><span id = 'typed_words'></span><span id = 'paragraph'>Press Begin to start the test</span></p>
+			</div>
+
+			<div id = 'word_input'>
+				<input type="text" name="" id = 'type_here' placeholder="Click Start to begin">
+			</div>
+		</div>
+		<div id = 'buttons'>
+			<button id ='begin'>Begin</button>
+			<button id = 'quit'>Quit</button>
+		</div>
+	</div>
+	<div class = 'stats'>
+		<div id = 'wrapper'>
+
+			<div id = 'stats_1'>
+				<p><b>Characters per minute: </b><span id = 'cpm'>0</span></p>
+				<p><b>errors: </b><span id = 'errors'>0</span></p>
+				<p><b>Accuracy: </b><span id = 'accuracy'>0</span>%</p>
+			</div>
+
+			<div id = 'stats_2'>
+				<p><b>About v_1.0:</b> To begin, press the <b>Begin</b> button and place your cursor into the text box and begin typing. To quit, press <b>Quit</b> to stop the test.</p>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+
+
+<script type="text/javascript" src="../homebrew_scripts/Typing_Test.js"></script>
+</body>
+</html>
+
+
+

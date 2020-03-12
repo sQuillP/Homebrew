@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pong</title>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+<style type="text/css">
+	canvas {
+		height: 500px;
+		width: 800px;
+		background-color: green;
+		margin: 0 18% 0 18%;
+	}
+
+.other {
+	margin-left:45%;
+}
+
+.center {
+margin-left:45%;
+
+}
+
+body {
+	background-color: gray;
+	font-family: 'Montserrat', sans-serif;
+}
+</style>
+</head>
+<body>
+	<canvas></canvas>
+	<h2 class = 'other'>Rallies: <span>0</span></h2>
+	 <p class = 'center'>Pick your color:</p><select class='center' >
+		<option value = 'red'>red</option>
+		<option value = 'orange'>orange</option>
+		<option value = 'yellow'>yellow</option>
+		<option value = 'green'>invisible</option>
+		<option value = 'blue'>blue</option>
+		<option value = 'purple'>purple</option>
+	</select>
+
+<p class = 'center'>Pick your opponents color:</p> <select class = 'center' id='opColor'>
+	<option value = 'red'>red</option>
+		<option value = 'orange'>orange</option>
+		<option value = 'yellow'>yellow</option>
+		<option value = 'green'>invisible</option>
+		<option value = 'blue'>blue</option>
+		<option value = 'purple'>purple</option>
+</select>
+
+<p class = 'center'>change the background:</p> <select class = 'center' id='background'>
+		<option value = 'green'>green</option>
+		<option value = 'red'>red</option>
+		<option value = 'orange'>orange</option>
+		<option value = 'yellow'>yellow</option>
+		<option value = 'red'>red</option>
+		<option value = 'blue'>blue</option>
+		<option value = 'purple'>purple</option>
+</select>
+
+
+
+
+
+<script type="text/javascript" src = '../homebrew_scripts/Pong.js'></script>
+</body>
+</html>
