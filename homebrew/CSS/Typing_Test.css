@@ -1,0 +1,111 @@
+
+body {
+	background: #6cc46a;
+	font-family: sans-serif;
+}
+
+input {
+	background: #e6e6e6;
+	text-align: center;
+	height: 30px;
+	width: 50%;
+	outline: none;
+	border: .5px solid black;
+	cursor: pointer;
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+
+.correct_word {
+	background: #cbd1c9;
+	color: black;
+}
+
+.incorrect_word  {
+	background: #ff7070;
+	color: white;
+}
+
+.container {
+	margin-top: 5%;
+	text-align: center;
+}
+
+#word_box {
+	min-height: 75px;
+}
+
+#word_box h1{
+	padding: 5px;
+	margin-bottom: 20px;
+}
+
+#word_container {
+	border: .5px solid black;
+	border-radius: 10px;
+	display: inline-block;
+	padding: 20px;
+	margin:0;
+	background: white;
+	width: 50%;
+}
+
+#timer  {
+	display: inline-block;
+	padding: 0;
+	margin:0;
+}
+
+#buttons {
+	padding: 10px;
+	margin:0px;
+}
+
+#begin {
+	margin-right: 20px;
+}
+
+#quit {
+	margin-left: : 20px;
+}
+
+button {
+	padding: 10px;
+	width: 150px;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	background: #79e677;
+	color: black;
+	border-radius: 5px;
+}
+
+button:hover {
+	background: black;
+	color: white;
+}
+
+#wrapper {
+	margin:10px;
+	padding: 0px;
+	border-radius: 5px;
+	overflow: hidden;
+	background: #d6d6d6;
+	font-size: .9em;
+	width: 50%;
+	display: inline-block;
+}
+
+#stats_1 {
+	text-align: left;
+	float: left;
+	width: 50%;
+	padding-left: 10px;
+	border-right: 1px solid black;
+}
+
+#stats_2 {
+	text-align: left;
+	overflow: hidden;
+	padding: 0px 0px 0px 5px;
+}
