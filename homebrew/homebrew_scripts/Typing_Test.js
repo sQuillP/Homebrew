@@ -99,8 +99,6 @@ function Statistics() {
 	this.wpm = document.querySelector('#wpm');
 	this.accuracy = document.querySelector('#accuracy');
 	this.missed = document.querySelector('#errors');
-	this.cpm_stat = 0;
-	this.wpm_stat = 0;
 	this.accuracy_stat = 100;
 	this.missed_stat = 0;
 	this.clock;
@@ -113,10 +111,7 @@ function Statistics() {
 	}
 	/*Calculates the wpm typing speed from each typed character*/
 	this.updateWPM = () => {
-		let curTime;
-		Number(minutes.textContent)>1?curTime = Number(minutes.textContent):curTime = 1;
-		let rate = ((input.value.length+1)/5)/curTime;
-		rate === Infinity?this.wpm.textContent = 40:this.wpm.textContent = rate;
+		this.wpm.textContent =Math.round(Number(this.cpm.textContent)/5);
 	}
 	/*calculated by taking the number of errors divided by the total characters*/
 	this.updateAccuracy = () => {
