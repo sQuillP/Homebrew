@@ -9,8 +9,6 @@ let minutes = document.querySelector('#minutes');
 let seconds = document.querySelector('#seconds');
 let paragraph = document.querySelector('#paragraph');
 let typed_words = document.querySelector("#typed_words");
-let stats = new Statistics();
-let time = 0;
 let wpm = 0;
 let accuracy = 0;
 let timer;
@@ -21,25 +19,7 @@ let strings = {
     2: 'abcdefghijklmnopqrstuvwxyz'
 };
 
-
-
-/*The API that is being used has an access capacity of 
-1000 times a day, meaning that you cannot type more than 
-1000 generated words from this application.*/
-
-/*Calls the dictionary with the word searched,
-Currently not in use*/
-function getAPI() {
-    fetch("https://dictionaryapi.com/api/v3/references/collegiate/json/?key=83c2c7cd-5344-4c38-a00a-54507558c26d")
-        .then(res => res.json())
-        .then(data => console.log(data))
-        .catch(err => alert("Cannot load words from dictionary. Try checking your connection"));
-}
-
-/*Uses the getAPI() function to generate a new synonymous word*/
-function callWord() {
-    getAPI()
-}
+let stats = new Statistics();
 
 /*Event listener for when user types in answer box*/
 input.addEventListener('keydown', readChar);
@@ -54,8 +34,6 @@ begin.addEventListener('click', (click) => {
 quit.addEventListener('click', (click) => {
     endTest();
 });
-
-
 
 function setCorrect(char, test) {
     typed_words.classList.remove('incorrect_word');
@@ -89,12 +67,14 @@ function readChar(char) {
     let myTest = strings[2];
     if (gameStart) {
         if (char.key.length > 1 && char.key !== 'Backspace') {
-            return
+            return;
         }
         if (char.keyCode === 8) {
             setBackSpace(myTest);
         } else if (myTest === input.value + char.key) {
             clearInterval(timer);
+            stats.updateCPM();
+            stats.updateWPM();
             gameStart = false;
             typed_words.textContent += char.key;
             paragraph.textContent = '';
@@ -102,9 +82,12 @@ function readChar(char) {
             typed_words.textContent = input.value + char.key;
             if (typed_words.textContent === myTest.substring(0, typed_words.textContent.length)) {
                 setCorrect(char.key, myTest);
+                stats.updateCPM();
+                stats.updateWPM();
             } else {
+            	stats.updateAccuracy();
+            	stats.updateMissed();
                 setIncorrect(char.key, myTest);
-                stats.updateMissed();
             }
         }
     }
@@ -113,18 +96,32 @@ function readChar(char) {
 /*object will keep track of all the statistics*/
 function Statistics() {
 	this.cpm = document.querySelector('#cpm');
+	this.wpm = document.querySelector('#wpm');
 	this.accuracy = document.querySelector('#accuracy');
 	this.missed = document.querySelector('#errors');
 	this.cpm_stat = 0;
+	this.wpm_stat = 0;
 	this.accuracy_stat = 100;
 	this.missed_stat = 0;
 	this.clock;
+	this.string = strings[2];
+	/*finds cpm from each typed character*/
 	this.updateCPM = () => {
-		this.cpm.textContent = cpm_stat
+		let curTime = (Number(minutes.textContent)*60 + Number(seconds.textContent));
+		let rate = Math.floor(((input.value.length+1)*60)/curTime);
+		rate===Infinity?this.cpm.textContent = 200:this.cpm.textContent = rate;
 	}
-	/*Updatest the accuracy of the typer*/
+	/*Calculates the wpm typing speed from each typed character*/
+	this.updateWPM = () => {
+		let curTime;
+		Number(minutes.textContent)>1?curTime = Number(minutes.textContent):curTime = 1;
+		let rate = ((input.value.length+1)/5)/curTime;
+		rate === Infinity?this.wpm.textContent = 40:this.wpm.textContent = rate;
+	}
+	/*calculated by taking the number of errors divided by the total characters*/
 	this.updateAccuracy = () => {
-
+		this.accuracy_stat -= (1/this.string.length)*100;
+		this.accuracy.textContent = Math.floor(this.accuracy_stat);
 	}
 	/*updatest the amount of misses*/
 	this.updateMissed = () => {
@@ -136,11 +133,11 @@ function Statistics() {
 		this.missed_stat = 0;
 		this.cpm_stat = 0;
 		this.cpm.textContent = this.cpm_stat;
+		this.wpm.textContent = this.wpm_stat;
 		this.missed.textContent = this.missed_stat;
 		this.accuracy.textContent = this.accuracy_stat;
 	}
 }
-
 
 /*Starts the time for the test, counts seconds*/
 function startClock() {
@@ -171,7 +168,7 @@ function startTest() {
         input.value = '';
         input.placeholder = '';
         input.select();
-
+        stats.reset();
     }
 }
 
@@ -186,4 +183,5 @@ function endTest() {
     input.value = "";
     input.placeholder = 'Click Start to begin';
     gameStart = false;
+    stats.reset();
 }
