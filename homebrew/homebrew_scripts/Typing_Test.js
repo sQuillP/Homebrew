@@ -1,6 +1,5 @@
 /*This script uses the dictionary API for generating 
 words to test speed */
-
 /*Public variables*/
 let quit = document.querySelector('#quit');
 let begin = document.querySelector('#begin');
@@ -9,6 +8,7 @@ let minutes = document.querySelector('#minutes');
 let seconds = document.querySelector('#seconds');
 let paragraph = document.querySelector('#paragraph');
 let typed_words = document.querySelector("#typed_words");
+let quickstart = document.querySelector('body');
 let wpm = 0;
 let accuracy = 0;
 let timer;
@@ -23,6 +23,10 @@ let stats = new Statistics();
 
 /*Event listener for when user types in answer box*/
 input.addEventListener('keydown', readChar);
+
+quickstart.addEventListener('keydown',(keydown)=> {
+	!gameStart&&keydown.key==='Enter'?startTest():null;
+});
 
 /*When the Begin button is clicked, it calls the function
 that starts the game*/
@@ -90,7 +94,7 @@ function readChar(char) {
                 setIncorrect(char.key, myTest);
             }
         }
-    }
+    } 
 }
 
 /*object will keep track of all the statistics*/
@@ -111,7 +115,7 @@ function Statistics() {
 	}
 	/*Calculates the wpm typing speed from each typed character*/
 	this.updateWPM = () => {
-		this.wpm.textContent =Math.round(Number(this.cpm.textContent)/5);
+		this.wpm.textContent = Math.round(Number(this.cpm.textContent)/5);
 	}
 	/*calculated by taking the number of errors divided by the total characters*/
 	this.updateAccuracy = () => {
@@ -133,21 +137,20 @@ function Statistics() {
 		this.accuracy.textContent = this.accuracy_stat;
 	}
 }
-
 /*Starts the time for the test, counts seconds*/
 function startClock() {
-    let second = 0;
+    let second = 50;
     timer = setInterval(() => {
     	second++;
         if (second < 10) {
-            seconds.textContent = '0' + second;
+            seconds.textContent='0'+second;
         } else {
-        	seconds.textContent = second;
+        	seconds.textContent=second;
         }
         if (second === 60) {
             second = 0;
-            seconds.textContent = '0'
-            minutes.textContent = ++time;
+            seconds.textContent = '00';
+            minutes.textContent = Number(minutes.textContent)+1;
         }
     }, 1000);
 }
