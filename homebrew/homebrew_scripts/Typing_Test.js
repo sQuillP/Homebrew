@@ -1,6 +1,7 @@
 /*This script uses the dictionary API for generating 
 words to test speed */
 /*Public variables*/
+
 let quit = document.querySelector('#quit');
 let begin = document.querySelector('#begin');
 let input = document.querySelector('#type_here');
