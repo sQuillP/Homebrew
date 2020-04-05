@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Math Game</title>
+<link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+<style type="text/css">
+
+body {
+	background: #6698e8;
+}
+
+.container {
+	text-align: center;
+	font-family: 'Lato', sans-serif;
+}
+
+.content {
+    position: absolute;
+    border: 2px solid black;
+    padding: 10px;
+    width: 250px;
+	top:50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	margin:20px 0px;
+	background: #adbfdb;
+	border-radius: 30px;
+	padding-top: 30px;
+}
+
+.input {
+	margin-top: 20px;
+}
+
+.isCorrect input{
+	border-radius: 5px;
+	border: none;
+	width: 50px;
+	padding: 5px;
+	outline: none;
+} 
+
+.gamemode{
+	margin-top: 20px;
+}
+
+ hr{
+	width:50%;
+	background-color: black;
+	height: 1px;
+} 
+
+select {
+	border: none;
+	cursor: pointer;
+	outline: none;
+	border-radius: 5px;
+	padding:5px;
+}
+
+#switch{
+border-radius: 20px;
+border: none;
+width: 65%;
+height: 30px;
+background-color: #d4e4ff;
+outline:none;
+}
+
+#quit {
+border-radius: 20px;
+border: none;
+width: 65%;
+height: 30px;
+background-color: #d4e4ff;
+outline:none;
+margin-top: 10px;
+}
+
+#message {
+	display: inline-block;
+	margin-bottom: 0px;
+}
+
+
+#begin{
+	cursor: pointer;
+	display: inline-block;
+	margin: 0px;
+}
+
+#difficulty {
+	margin: 15px 15px;
+}
+
+#quit:hover {
+	background-color: #4186fa;
+	color:white;
+}
+#switch:hover{
+	background-color: #4186fa;
+	color:white;
+}
+
+#title{
+	text-align: center;
+	font-size: 60px;
+}
+
+</style>
+</head>
+<body>
+<div class = 'container'>
+	<h1 id = 'title'>Math game</h1>
+	<div class = 'start'>
+		<h1 id = 'begin'>Begin</h1>
+	</div>
+
+	<div class = 'content'>
+		<div class = 'problem'>
+			<h1><span id = 'operation'>Click begin to start</span></h1>
+		</div>
+		<div class = 'isCorrect'>
+			<input type="text" name="">
+		</div>
+
+		<div>
+			<h4 id = 'message'></h4>
+		</div>
+
+		<div class = 'scoreboard'>
+			<h1>Score: <span id = 'score'>0</span></h1>
+			<hr>
+		</div>
+		<div class = 'seconds'>
+			<h1>Time: <span id = 'time'>0</span>s</h1>
+		</div>
+		<div class = 'gamemode'>
+			<h4>Challenge:  <span id = 'gameOptions'>Addition</span></h1>
+		</div>
+		<div>
+			<button id = 'switch'>Switch Challenge</button>
+		</div>		
+		<div>
+			<button id = 'quit'>New Game</button>
+		</div>
+		<div id = 'difficulty'>
+			<select> 
+				<option value="Easy">Easy</option>
+				<option value="Medium">Medium</option>
+				<option value="Hard">Hard</option>
+			</select>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="../Scripts/MathExercise.js"></script>
+</body>
+</html>
