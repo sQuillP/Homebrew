@@ -1,5 +1,5 @@
 
-let count = 0;
+
 
 
 /*This script creates a deck of 52 cards. Each card is represented as an 
